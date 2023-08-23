@@ -20,7 +20,6 @@ const Skeletons = [1,2,3,5,6]
         <GameCard key={game.id} game={game} />
       </GameCardContainer>)}
     </SimpleGrid>
-  
 </>
   )
 }
