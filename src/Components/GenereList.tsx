@@ -1,14 +1,13 @@
 
-
-
 import React from 'react'
-import useGenere from './Hooks/useGenere'
-import { HStack, Image, List, ListItem, Spinner, Text } from '@chakra-ui/react'
+import useGenere, { Genere } from './Hooks/useGenere'
+import { Button, HStack, Image, Link, List, ListItem, Spinner, Text } from '@chakra-ui/react'
 import getCroppedImageUrl from '../Services/image-url'
+import useData from './Hooks/useData'
 
 const GenereList = () => {
 
-    const {Genre , isLoading, Error} = useGenere()
+    const {Data , isLoading, Error} = useGenere();
 
     if (Error) return null;
     
@@ -16,10 +15,11 @@ const GenereList = () => {
 
   return (
     <List>
-        {Genre.map(genere => <ListItem key={genere.id} paddingY = "5px">
+        {Data.map(genere => <ListItem key={genere.id} paddingY = "5px">
              <HStack>
                 <Image boxSize='32px' borderRadius={8} src={getCroppedImageUrl(genere.image_background)} />
-                <Text fontSize='lg'>{genere.name}</Text>
+                <Button variant='link' fontSize='lg' onClick={() => console.log(genere)
+                }>{genere.name}</Button>
             </HStack>
 
              </ListItem>)}
