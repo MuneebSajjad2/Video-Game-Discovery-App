@@ -5,7 +5,13 @@ import { Button, HStack, Image, Link, List, ListItem, Spinner, Text } from '@cha
 import getCroppedImageUrl from '../Services/image-url'
 import useData from './Hooks/useData'
 
-const GenereList = () => {
+
+
+interface Props {
+  onSelectGenere : (genere: Genere) => void
+}
+
+const GenereList = ({onSelectGenere} : Props) => {
 
     const {Data , isLoading, Error} = useGenere();
 
@@ -18,7 +24,7 @@ const GenereList = () => {
         {Data.map(genere => <ListItem key={genere.id} paddingY = "5px">
              <HStack>
                 <Image boxSize='32px' borderRadius={8} src={getCroppedImageUrl(genere.image_background)} />
-                <Button variant='link' fontSize='lg' onClick={() => console.log(genere)
+                <Button variant='link' fontSize='lg' onClick={() => onSelectGenere(genere)
                 }>{genere.name}</Button>
             </HStack>
 
