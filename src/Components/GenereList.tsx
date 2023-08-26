@@ -8,10 +8,11 @@ import useData from './Hooks/useData'
 
 
 interface Props {
-  onSelectGenere : (genere: Genere) => void
+  onSelectGenere : (genere: Genere) => void;
+  selectedGenre : Genere | null
 }
 
-const GenereList = ({onSelectGenere} : Props) => {
+const GenereList = ({selectedGenre, onSelectGenere} : Props) => {
 
     const {Data , isLoading, Error} = useGenere();
 
@@ -24,7 +25,7 @@ const GenereList = ({onSelectGenere} : Props) => {
         {Data.map(genere => <ListItem key={genere.id} paddingY = "5px">
              <HStack>
                 <Image boxSize='32px' borderRadius={8} src={getCroppedImageUrl(genere.image_background)} />
-                <Button variant='link' fontSize='lg' onClick={() => onSelectGenere(genere)
+                <Button fontWeight={genere.id === selectedGenre?.id ? 'Bold' : 'normal' } variant='link' fontSize='lg' onClick={() => onSelectGenere(genere)
                 }>{genere.name}</Button>
             </HStack>
 
