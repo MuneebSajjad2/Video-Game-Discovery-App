@@ -16,16 +16,15 @@ function GameGrid ({gameQuery} : Props) {
 const { Data ,Error , isLoading} = useGames(gameQuery)
 const Skeletons = [1,2,3,5,6]
 
-  return (
-  <>
-    {Error && <p>{Error}</p>}
+  if (Error) return <p>{Error}</p>
+
+  return (    
     <SimpleGrid columns={{sm : 1, md : 2, lg : 3, xl : 4}} padding={10} spacing={6}>
       {isLoading && Skeletons.map(skeleton => <GameCardContainer key={skeleton}> <GameCardSkeleton  /> </GameCardContainer>)}
       {Data.map(game => <GameCardContainer key={game.id}>
         <GameCard  game={game} />
       </GameCardContainer>)}
     </SimpleGrid>
-</>
   )
 }
 export default GameGrid
